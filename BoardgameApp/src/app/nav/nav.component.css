@@ -1,0 +1,5 @@
+.example-fill-remaining-space {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
