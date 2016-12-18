@@ -1,4 +1,4 @@
-# PartyGameEngine
+# Boardgame Services
 Spring Boot
 Jersey JAX-RS REST backend
 WebSockets (SockJS)
