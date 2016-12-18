@@ -1,33 +1,28 @@
 package com.boardgame.dto;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class User {
+public class Game {
 	@Id
 	public String id;
 	
 	public String name;
 	
-	public User(){
-		this.name = "default name";
-	}
+	public List<User> users;
 	
-	public User(String name){
-		this.name = name;
-	}
+	public Game(){}
 	
-	public String getName(){
-		return name;
-	}
-	
-	public void setName(String name){
+	public Game(String name){
 		this.name = name;
 	}
 	
 	@Override
 	public String toString(){
-		return String.format("User[id=%s, name='%s']", id, name);
+		return String.format("Game[id=%s, name='%s']", id, name);
 	}
+	
 }
