@@ -33,7 +33,7 @@ public class GameController {
 		return gameRepo.findByName(name);
 	}
 	
-	//TODO: remove after done with intial setup
+	//TODO: remove after done with initial setup
 	@RequestMapping("/deleteGames")
 	public @ResponseBody String deleteGames(){
 		gameRepo.deleteAll();
@@ -49,10 +49,10 @@ public class GameController {
 		}
 		
 		User user = userRepo.save(new User());
-		if (game.users == null){
-			game.users = new ArrayList<User>();
+		if (game.user_ids == null){
+			game.user_ids = new ArrayList<String>();
 		}
-		game.users.add(user);
+		game.user_ids.add(user._id);
 		gameRepo.save(game);
 		
 		return user;

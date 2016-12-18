@@ -8,11 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Game {
 	@Id
-	public String id;
+	public String _id;
 	
 	public String name;
 	
-	public List<User> users;
+	public List<String> user_ids;
 	
 	public Game(){}
 	
@@ -22,7 +22,7 @@ public class Game {
 	
 	@Override
 	public String toString(){
-		return String.format("Game[id=%s, name='%s']", id, name);
+		return String.format("Game[id=%s, name='%s']", _id, name);
 	}
 	
 }

@@ -25,7 +25,7 @@ public class UserController {
 		return "{\"text\":\"hello\"}";
 	}
 	
-	//TODO: remove after done with intial setup
+	//TODO: remove after done with initial setup
 	@GetMapping("/deleteUsers")
 	public @ResponseBody String deleteUsers(){
 		userRepo.deleteAll();

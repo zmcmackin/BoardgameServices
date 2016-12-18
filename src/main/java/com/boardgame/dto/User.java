@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class User {
 	@Id
-	public String id;
+	public String _id;
 	
 	public String name;
 	
@@ -28,6 +28,6 @@ public class User {
 	
 	@Override
 	public String toString(){
-		return String.format("User[id=%s, name='%s']", id, name);
+		return String.format("User[id=%s, name='%s']", _id, name);
 	}
 }
