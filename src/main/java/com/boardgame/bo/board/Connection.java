@@ -1,6 +1,8 @@
 package com.boardgame.bo.board;
 
-public class Connection {
+import com.boardgame.bo.GameObjectWithTraits;
+
+public class Connection extends GameObjectWithTraits {
 
     String id;
 
