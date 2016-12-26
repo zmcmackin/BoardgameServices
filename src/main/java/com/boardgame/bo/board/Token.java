@@ -1,47 +1,48 @@
 package com.boardgame.bo.board;
 
+import com.boardgame.bo.GameObjectWithTraits;
 import com.boardgame.enums.board.TokenType;
 
-public class Token {
+public class Token extends GameObjectWithTraits {
 
-	String name;
-	
-	TokenType type;
-	
-	Object owner;
+    String name;
 
-	public Token() {
-		this.type = TokenType.GLOBAL;
-	}
+    String type;
 
-	public Token(String name, TokenType type, Object owner) {
-		super();
-		this.name = name;
-		this.type = type;
-		this.owner = owner;
-	}
+    Object owner;
 
-	public String getName() {
-		return name;
-	}
+    public Token() {
+        this.type = TokenType.GLOBAL.toString();
+    }
 
-	public Object getOwner() {
-		return owner;
-	}
+    public Token(String name, String type, Object owner) {
+        this.name = name;
+        this.type = type;
+        this.owner = owner;
+    }
 
-	public TokenType getType() {
-		return type;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setOwner(Object owner) {
-		this.owner = owner;
-	}
+    public String getType() {
 
-	public void setType(TokenType type) {
-		this.type = type;
-	}
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Object getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Object owner) {
+        this.owner = owner;
+    }
 }

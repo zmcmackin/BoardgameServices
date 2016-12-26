@@ -1,5 +1,6 @@
 package com.boardgame.bo.board;
 
+import com.boardgame.bo.GameObjectWithTraits;
 import org.springframework.data.annotation.Transient;
 
 import java.util.HashSet;
@@ -7,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class Tile {
+public class Tile extends GameObjectWithTraits {
 
     String id;
 

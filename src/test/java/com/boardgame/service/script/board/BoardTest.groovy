@@ -1,6 +1,8 @@
 package com.boardgame.service.script.board
 
 import com.boardgame.bo.board.Board
+import com.boardgame.bo.board.Tile
+import com.boardgame.bo.board.Token
 import com.boardgame.dto.Game
 import com.boardgame.dto.User
 import com.boardgame.enums.board.TokenType
@@ -30,7 +32,7 @@ public class BoardTest {
 
     @Test
     public void tileTest() {
-        def (Board board, List positions) = buildDefaultBoardGame()
+        def (Game game, Board board, List positions) = buildDefaultBoardGame()
 
         println(JsonOutput.toJson(board))
 
@@ -51,7 +53,7 @@ public class BoardTest {
         buildDefaultMap(positions, g)
 
         Board board = boardService.getBoard(g);
-        [board, positions]
+        [g, board, positions]
     }
 
     private List buildDefaultMap(List positions, Game g) {
@@ -79,18 +81,17 @@ public class BoardTest {
 
     @Test
     public void tokenTest() {
-        def (Board board, List positions) = buildDefaultBoardGame()
+        def (Game game, Board board, List positions) = buildDefaultBoardGame()
 
         User user = new User();
         user.setName("Unit Test User");
 
         def idx = 0;
+        def ticktack = ['','X','O']
         positions.each {
             int level, int x, int y ->
 
-                def tile = levelService.getTile(board, null, level, x, y)
-
-                tokenService.createToken(board, tile, "Token ${idx++}", TokenType.USER, user)
+                boardService.updateToken(game, null, level, x, y, new Token(name: "Token ${idx++}", traits:["ticktack":ticktack[Math.round(Math.random()*ticktack.size()) as Integer]]))
         }
 
         println(JsonOutput.toJson(board))
