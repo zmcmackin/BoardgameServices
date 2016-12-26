@@ -1,22 +1,49 @@
 package com.boardgame.controllers.board;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.boardgame.bo.board.Board;
+import com.boardgame.bo.board.Connection;
+import com.boardgame.bo.board.Level;
+import com.boardgame.bo.board.Tile;
+import com.boardgame.dto.Game;
+import com.boardgame.service.GameService;
 import com.boardgame.service.board.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
+    @Autowired
+    private GameService gameService;
 
 	@RequestMapping("/game/{name}/board")
 	public @ResponseBody Board getBoard(@PathVariable("name") String name) {
-		return boardService.getBoard(name);
+        Game g = gameService.getGameByName(name);
+	    return boardService.getBoard(g);
 	}
+
+	@RequestMapping(value="/game/{name}/tile/update")
+	public @ResponseBody Game updateTile(@PathVariable("name") String name,
+                    @RequestParam(value = "uuid", required = false) String uuid,
+                    @RequestParam(value = "x", required = false) Integer x,
+                    @RequestParam(value = "y", required = false) Integer y,
+                    @RequestParam(value = "level", required = false) int level,
+                    @RequestBody Tile tile) {
+	    Game g = gameService.getGameByName(name);
+
+	    boardService.updateTile(g, uuid, x, y, level, tile);
+
+        gameService.save(g);
+
+		return g;
+	}
+
+//	@RequestMapping(value="/game/{name}/connection/update")
+//	public @ResponseBody Connection updateConnection(@PathVariable("name") String name,
+//										@RequestBody(required = true) Connection c) {
+//		return boardService.updateConnection(name);
+//	}
+
 
 }

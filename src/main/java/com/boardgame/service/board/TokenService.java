@@ -19,7 +19,7 @@ public class TokenService {
 	}
 
 	public Token createToken(Board board, Tile tile, String name, TokenType type, Object owner) {
-		Token token = createToken(name, type, owner);
+		Token token = buildToken(name, type, owner);
 
 		String uuid = UUID.randomUUID().toString();
 
@@ -32,7 +32,7 @@ public class TokenService {
 		return token;
 	}
 
-	private Token createToken(String name, TokenType type, Object owner) {
+	private Token buildToken(String name, TokenType type, Object owner) {
 		return new Token(name, type, owner);
 	}
 

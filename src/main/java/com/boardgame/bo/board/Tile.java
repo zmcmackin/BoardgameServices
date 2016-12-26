@@ -1,5 +1,7 @@
 package com.boardgame.bo.board;
 
+import org.springframework.data.annotation.Transient;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,34 +9,76 @@ import java.util.Set;
 
 public class Tile {
 
-	boolean isValid;
+    String id;
 
-	Set<Connection> connections = new HashSet<>();
+    boolean isValid;
 
-	Set<String> tokenIds = new HashSet<>();
+    Set<Connection> connections = new HashSet<>();
 
-	public Set<Connection> getConnections() {
-		return connections;
-	}
+    Set<String> tokenIds = new HashSet<>();
 
-	public Set<String> getTokenIds() {
-		return tokenIds;
-	}
+    @Transient
+    Integer level;
 
-	public boolean isValid() {
-		return isValid;
-	}
+    @Transient
+    Integer x;
 
-	public void setConnections(Set<Connection> connections) {
-		this.connections = connections;
-	}
+    @Transient
+    Integer y;
 
-	public void setTokenIds(Set<String> tokenIds) {
-		this.tokenIds = tokenIds;
-	}
+    public Integer getLevel() {
+        return level;
+    }
 
-	public void setValid(boolean isValid) {
-		this.isValid = isValid;
-	}
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
 
+    public Integer getX() {
+        return x;
+    }
+
+    public void setX(Integer x) {
+        this.x = x;
+    }
+
+    public Integer getY() {
+        return y;
+    }
+
+    public void setY(Integer y) {
+        this.y = y;
+    }
+
+    public Set<Connection> getConnections() {
+        return connections;
+    }
+
+    public void setConnections(Set<Connection> connections) {
+        this.connections = connections;
+    }
+
+    public Set<String> getTokenIds() {
+        return tokenIds;
+    }
+
+    public void setTokenIds(Set<String> tokenIds) {
+        this.tokenIds = tokenIds;
+    }
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean isValid) {
+        this.isValid = isValid;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
