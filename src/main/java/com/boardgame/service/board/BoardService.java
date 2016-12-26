@@ -1,40 +1,42 @@
 package com.boardgame.service.board;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.boardgame.bo.board.Board;
 import com.boardgame.bo.board.Tile;
 import com.boardgame.dto.Game;
 import com.boardgame.enums.GameObjectTypes;
-import com.boardgame.enums.board.TokenType;
-import com.boardgame.service.GameService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class BoardService {
 
-	@Autowired
-	private GameService gameService;
+    @Autowired
+    private LevelService levelService;
 
-	@Autowired
-	private LevelService levelService;
+    public Game updateTile(Game game, String uuid, int level, Integer x, Integer y, Tile updateTile) {
+        if (StringUtils.isEmpty(uuid) && (x == null && y == null)) {
+            throw new IllegalArgumentException("");
+        }
 
-	
+        Board board = getBoard(game);
 
-	public Board getBoard(String name) {
+        Tile tile = levelService.getTile(board, uuid, level, x, y);
 
-		Game game = gameService.getGameByName(name);
+        if (updateTile != null) {
+            updateTile.setId(tile.getId());
 
-		game.gameObjects.putIfAbsent(GameObjectTypes.board, new Board());
+            levelService.setTileByPosition(levelService.getLevel(board, level), x, y, updateTile);
+        }
 
-		Board board = (Board) game.gameObjects.get(GameObjectTypes.board);
+        return game;
+    }
 
-		Tile tile = levelService.getTile(board, 0, 0, 0);
+    public Board getBoard(Game game) {
+        game.gameObjects.putIfAbsent(GameObjectTypes.board, new Board());
 
-		
+        Board board = (Board) game.gameObjects.get(GameObjectTypes.board);
 
-		gameService.save(game);
-
-		return board;
-	}
+        return board;
+    }
 }

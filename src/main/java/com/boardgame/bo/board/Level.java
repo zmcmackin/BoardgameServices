@@ -1,17 +1,29 @@
 package com.boardgame.bo.board;
 
+import org.springframework.data.annotation.Transient;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Level {
 
-	Map<Integer, Map<Integer, Tile>> tiles = new HashMap<>();
+    @Transient
+    Integer level;
+    Map<Integer, Map<Integer, Tile>> tiles = new HashMap<>();
 
-	public Map<Integer, Map<Integer, Tile>> getTiles() {
-		return tiles;
-	}
+    public Integer getLevel() {
+        return level;
+    }
 
-	public void setTiles(Map<Integer, Map<Integer, Tile>> tiles) {
-		this.tiles = tiles;
-	}
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public Map<Integer, Map<Integer, Tile>> getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(Map<Integer, Map<Integer, Tile>> tiles) {
+        this.tiles = tiles;
+    }
 }
