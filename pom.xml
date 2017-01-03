@@ -77,7 +77,7 @@
 			<plugin>
 				<groupId>org.codehaus.groovy.maven</groupId>
 				<artifactId>gmaven-plugin</artifactId>
-				s<extensions>true</extensions>
+				<extensions>true</extensions>
 				<executions>
 					<execution>
 						<goals>
